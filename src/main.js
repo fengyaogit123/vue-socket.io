@@ -1,8 +1,8 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import App from './App';
 import VueRounter from 'vue-router';
+import App from './App';
 import Login from './components/login/login';
 import Room from './components/room/room';
 
