@@ -321,7 +321,7 @@
                     userName: this.userNameList[randomNum],
                     userImg: randomNum + 1
                 };
-                this.httpServer = io.connect('http://192.168.31.238:3000');
+                this.httpServer = io.connect('http://10.209.96.67:3000');
                 this.httpServer.emit('login', this.userInfo);
                 this.onlineUserList.push(this.userInfo);
                 this.httpServer.on('login', function (obj) {
