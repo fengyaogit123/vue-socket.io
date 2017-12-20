@@ -6,7 +6,10 @@ import App from './App';
 import Login from './components/login/login';
 import Room from './components/room/room';
 
+import vueSocket from 'vue-socket.io';
+
 Vue.use(VueRounter);
+Vue.use(vueSocket);
 
 const routes = [
     {path: '/', redirect: '/login'},
@@ -18,9 +21,11 @@ const router = new VueRounter({
 });
 
 /* eslint-disable no-new */
-new Vue({
+const vue = new Vue({
     el: '#app',
     router,
     template: '<App/>',
     components: {App}
 });
+
+console.log(vue);
