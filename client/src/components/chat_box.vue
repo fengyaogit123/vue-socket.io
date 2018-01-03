@@ -5,14 +5,8 @@
         <img class="user" src="../images/user_icon.png"/>
       </div>
       <div class="center">
-        <div class="item" :class="{active: tabIndex === 0}">
-          <img class="chat" src="../images/chat.png" />
-        </div>
-        <div class="item" :class="{active: tabIndex === 1}">
-          <img class="friend" src="../images/friend.png" />
-        </div>
-        <div class="item" :class="{active: tabIndex === 2}">
-          <img class="file" src="../images/file.png" />
+        <div class="item" v-for="item in tabList" @click="tabEvent(item)" :class="{active: item.index === tabIndex}">
+          <img :class="item.class" :src="item.src" />
         </div>
       </div>
       <div class="right"></div>
@@ -24,8 +18,18 @@
 export default {
   data () {
     return {
+      tabList: [
+        {class: 'chat', src: 'https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/chat.png', index: 0},
+        {class: 'friend', src: 'https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/friend.png', index: 1},
+        {class: 'file', src: 'https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/file.png', index: 2}
+      ],
       tabIndex: 0
     };
+  },
+  methods: {
+    tabEvent (item) {
+      this.tabIndex = item.index;
+    }
   }
 };
 </script>
@@ -54,7 +58,6 @@ export default {
           padding: 2px;
           box-sizing: border-box;
           border-radius: 100%;
-          transition: all .5s;
           &:hover {
             background: rgba(255,255,255,0.5);
           }
