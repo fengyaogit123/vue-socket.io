@@ -25,7 +25,7 @@ export default {
 @blue: rgb(22,144,237);
   .chat-box {
     width: 65%;
-    height: 75%;
+    height: 80%;
     background: #fff;
     min-width: 700px;
     display: flex;
