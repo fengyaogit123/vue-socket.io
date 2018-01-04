@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <chat-box></chat-box>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import chatBox from './components/chat_box.vue';
 export default {
   components: {
-    'chat-box': chatBox
+
   }
 };
 </script>
