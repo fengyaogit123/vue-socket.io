@@ -42,7 +42,7 @@
           <div class="bottom-item folder"></div>
           <div class="bottom-item setting"></div>
         </div>
-        <div class="center">
+        <div class="bottom-center">
           <textarea class="textarea" autofocus="autofocus"></textarea>
         </div>
         <div class="btn-box">
@@ -66,11 +66,13 @@ export default {
     };
   },
   mounted () {
-    this.$refs.btn.onmousedown = function(event) {event.preventDefault()}; // 发送消息不失去焦点
+    this.$refs.btn.onmousedown = event => { // 发送消息不失去焦点
+      event.preventDefault()
+    };
   },
   methods: {
-    sendMessageEvent (event) {
-      event.preventDefault();
+    sendMessageEvent () {
+
     }
   }
 };
@@ -312,8 +314,9 @@ export default {
             }
           }
         }
-        .center {
+        .bottom-center {
           flex: 1;
+          font-size: 0;
           .textarea {
             width: 100%;
             height: 100%;
