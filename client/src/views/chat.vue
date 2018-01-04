@@ -1,6 +1,7 @@
 <template>
   <div class="chat">
     <ai-left></ai-left>
+    <div class="resize"></div>
     <div class="right-box">
       <div class="top">王志盼</div>
       <div class="center" ref="scroll">
@@ -42,10 +43,10 @@
           <div class="bottom-item setting"></div>
         </div>
         <div class="center">
-          <textarea class="textarea"></textarea>
+          <textarea class="textarea" autofocus="autofocus"></textarea>
         </div>
         <div class="btn-box">
-          <div class="button">发送（S）</div>
+          <div class="button" ref="btn" @click="sendMessageEvent()">发送（S）</div>
         </div>
       </div>
     </div>
@@ -64,7 +65,13 @@ export default {
       list: listdata
     };
   },
+  mounted () {
+    this.$refs.btn.onmousedown = function(event) {event.preventDefault()}; // 发送消息不失去焦点
+  },
   methods: {
+    sendMessageEvent (event) {
+      event.preventDefault();
+    }
   }
 };
 </script>
@@ -74,7 +81,11 @@ export default {
   .chat {
     width: 100%;
     display: flex;
-
+    .resize {
+      width: 4px;
+      height: 100%;
+      cursor: e-resize;
+    }
     .right-box {
       flex: 1;
       display: flex;
@@ -207,6 +218,13 @@ export default {
         flex-flow: column;
         padding: 0 10px 10px 10px;
         box-sizing: border-box;
+        &:before {
+          width: 100%;
+          height: 4px;
+          content: ' ';
+          transform: translate3d(0, -2px, 0);
+          cursor: n-resize;
+        }
         .bottom-top {
           height: 34px;
           padding: 5px 0;
