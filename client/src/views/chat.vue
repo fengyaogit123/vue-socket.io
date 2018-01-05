@@ -1,34 +1,34 @@
 <template>
   <div class="chat">
     <ai-left></ai-left>
-    <div class="resize"></div>
+    <div class="resize" ref="resize"></div>
     <div class="right-box">
-      <div class="top">王志盼</div>
+      <div class="top">{{user.userInfo.username}}</div>
       <div class="center" ref="scroll">
         <div class="scroll-box">
-              <div v-for="item in list">
-                <div class="message left-hook" v-if="item.message.type === 2">
+              <div v-for="item in user.list">
+                <div class="message left-hook" v-if="item.type === 2">
                   <div class="message-left">
-                    <img :src="item.user.avatar"/>
+                    <img :src="user.userInfo.avatar"/>
                   </div>
                   <div class="message-center">
-                    <div class="user">{{ item.user.username }}</div>
-                    <div class="text"><span class="horn">◀</span>{{ item.message.text }}</div>
+                    <div class="user">{{ user.userInfo.username }}</div>
+                    <div class="text"><span class="horn">◀</span>{{ item.message }}</div>
                   </div>
                   <div class="message-right"></div>
                 </div>
-                <div class="message right-hook" v-if="item.message.type === 3">
+                <div class="message right-hook" v-if="item.type === 3">
                   <div class="message-left"></div>
                   <div class="message-center">
-                    <div class="user">{{ item.user.username }}</div>
-                    <div class="text"><span class="horn">▶</span>{{ item.message.text }}</div>
+                    <div class="user">{{ user.userInfo.username }}</div>
+                    <div class="text"><span class="horn">▶</span>{{ item.message }}</div>
                   </div>
                   <div class="message-right">
-                    <img :src="item.user.avatar"/>
+                    <img :src="user.userInfo.avatar"/>
                   </div>
                 </div>
-                <div class="message center-hook" v-if="item.message.type === 1">
-                  <span class="tip">{{ item.message.text }}</span>
+                <div class="message center-hook" v-if="item.type === 1">
+                  <span class="tip">{{ item.message }}</span>
                 </div>
               </div>
         </div>
@@ -55,22 +55,54 @@
 
 <script>
 import left from '../components/chat/left.vue';
-import listdata from './a.js';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box/chat');
 export default {
   components: {
     'ai-left': left
   },
   data () {
     return {
-      list: listdata
+      start: 0,
+      press: false
     };
+  },
+  computed: {
+    ...mapState({
+      user: state => state.userList[state.itemIndex]
+    })
   },
   mounted () {
     this.$refs.btn.onmousedown = event => { // 发送消息不失去焦点
-      event.preventDefault()
+      event.preventDefault();
+    };
+    this.$refs.resize.onmousedown = event => { // 左右拖动
+      event.preventDefault();
+      if (!this.press) {
+        console.log('onmousedown 按下');
+        this.start = event.clientX;
+        this.press = true;
+      }
+    };
+    document.getElementById('app').onmousemove = event => { // 左右拖动
+      if (this.press) {
+        event.preventDefault();
+        let width = event.clientX - this.start + 200;
+          console.log('onmousemove 移动', width);
+        this.changeUserListResize(width);
+      }
+    };
+    document.getElementById('app').onmouseup = event => { // 左右拖动
+      if (this.press) {
+        event.preventDefault();
+        console.log('onmousemove 松开');
+        this.press = false;
+      }
     };
   },
   methods: {
+    ...mapMutations(['changeUserListResize']),
+    ...mapActions([]),
     sendMessageEvent () {
 
     }
@@ -123,14 +155,14 @@ export default {
                   width: 40px;
                   img {
                       height: 40px;
-                      border-radius: 3px;
+                      border-radius: 100%;
                   }
               }
               .message-right {
                   width: 40px;
                   img {
                       height: 40px;
-                      border-radius: 3px;
+                      border-radius: 100%;
                   }
               }
               .message-center {
@@ -231,6 +263,7 @@ export default {
           height: 34px;
           padding: 5px 0;
           box-sizing: border-box;
+          cursor: default;
           .bottom-item {
             width: 24px;
             height: 24px;

@@ -1,9 +1,5 @@
-import Vuex from 'vuex';
-import Vue from 'vue';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default {
   namespaced: true,
   state: {
     userInfo: {
@@ -23,4 +19,4 @@ export default new Vuex.Store({
     getDataEvent ({ commit, state }) {
     }
   }
-});
+};

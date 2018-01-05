@@ -1,15 +1,15 @@
 <template>
-  <div class="left">
-    <div class="item" :class="{checked: itemIndex === index}" v-for="(item, index) in userList" @click="itemEvent(index)">
+  <div class="left" :style="{width: userListResize + 'px'}">
+    <div class="item" :class="{checked: itemIndex === key - 0}" v-for="(item, key) in userList" @click="itemChangeEvent(key - 0)">
       <div class="icon">
-        <img :src="item.url" />
+        <img :src="item.userInfo.avatar" />
       </div>
       <div class="user">
-        <div class="username">{{item.username}}</div>
-        <div class="message">{{item.message}}</div>
+        <div class="username">{{item.userInfo.username}}</div>
+        <div class="message">暂无消息</div>
       </div>
       <div class="delete">
-        <div class="close" @click="deleteEvent($event, item, index)">✖</div>
+        <div class="close" @click="deleteEvent($event, key)">✖</div>
       </div>
       <div class="active" v-show="item.noReadNum">
         <div class="text">{{item.noReadNum}}</div>
@@ -19,22 +19,28 @@
 </template>
 
 <script>
-import {list} from './user.json';
+import {loading} from '../../images/image.json';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box/chat');
 export default {
-  components: {
-  },
   data () {
     return {
-      userList: list,
-      itemIndex: -1
+      default_user_icon: loading
     };
   },
+  computed: {
+    ...mapState({
+      userList: state => state.userList,
+      itemIndex: state => state.itemIndex,
+      userListResize: state => state.userListResize
+    })
+  },
   methods: {
-    itemEvent (index) {
-      this.itemIndex = index;
-    },
-    deleteEvent (e, item, index) {
+    ...mapMutations(['itemChangeEvent', 'deleteItemEvent']),
+    ...mapActions([]),
+    deleteEvent (e, key) {
       e.stopPropagation();
+      this.deleteItemEvent(key);
     }
   }
 };
@@ -45,7 +51,7 @@ export default {
   }
 
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 0px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -57,10 +63,14 @@ export default {
 <style lang="less" scoped>
 
     .left {
-      width: 200px;
       background: rgb(250,250,250);
+      min-width: 65px;
+      max-width: 300px;
       overflow-y: auto;
       &:hover {
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
         &::-webkit-scrollbar-thumb {
           background: rgba(200, 200, 200, 0.6);
         }
@@ -89,7 +99,8 @@ export default {
           background: rgb(235,235,235);
         }
         .icon {
-          height: 100%;
+          height: 40px;
+          width: 40px;
           img {
             height: 100%;
             border-radius: 100%;

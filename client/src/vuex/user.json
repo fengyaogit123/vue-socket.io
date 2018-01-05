@@ -1,0 +1,328 @@
+{
+  "list": {
+    "100": {
+      "userInfo": {
+        "username": "全站聊天室",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/group.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+        "type": 1,
+        "message": "你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)"
+      }]
+    },
+    "101": {
+      "userInfo": {
+        "username": "夕阳如故",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "你好"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        }
+      ]
+    },
+    "102": {
+      "userInfo": {
+        "username": "残阳如雪",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "(*╹▽╹*)"
+        },
+        {
+          "type": 2,
+          "message": "你好，我是机器人"
+        }
+      ]
+    },
+    "103": {
+      "userInfo": {
+        "username": "机器人",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+        "type": 1,
+        "message": "你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)"
+      }]
+    },
+    "104": {
+      "userInfo": {
+        "username": "夕阳如故",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "你好"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        }
+      ]
+    },
+    "105": {
+      "userInfo": {
+        "username": "残阳如雪",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "(*╹▽╹*)"
+        },
+        {
+          "type": 2,
+          "message": "你好，我是机器人"
+        }
+      ]
+    },
+    "106": {
+      "userInfo": {
+        "username": "机器人",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+        "type": 1,
+        "message": "你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)"
+      }]
+    },
+    "107": {
+      "userInfo": {
+        "username": "夕阳如故",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "你好"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        }
+      ]
+    },
+    "108": {
+      "userInfo": {
+        "username": "残阳如雪",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "(*╹▽╹*)"
+        },
+        {
+          "type": 2,
+          "message": "你好，我是机器人"
+        }
+      ]
+    },
+    "109": {
+      "userInfo": {
+        "username": "机器人",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+        "type": 1,
+        "message": "你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)"
+      }]
+    },
+    "110": {
+      "userInfo": {
+        "username": "夕阳如故",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "你好"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        }
+      ]
+    },
+    "111": {
+      "userInfo": {
+        "username": "残阳如雪",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "(*╹▽╹*)"
+        },
+        {
+          "type": 2,
+          "message": "你好，我是机器人"
+        }
+      ]
+    },
+    "112": {
+      "userInfo": {
+        "username": "机器人",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+        "type": 1,
+        "message": "你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)"
+      }]
+    },
+    "113": {
+      "userInfo": {
+        "username": "夕阳如故",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "你好"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        }
+      ]
+    },
+    "114": {
+      "userInfo": {
+        "username": "残阳如雪",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "(*╹▽╹*)"
+        },
+        {
+          "type": 2,
+          "message": "你好，我是机器人"
+        }
+      ]
+    },
+    "115": {
+      "userInfo": {
+        "username": "机器人",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+        "type": 1,
+        "message": "你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)"
+      }]
+    },
+    "116": {
+      "userInfo": {
+        "username": "夕阳如故",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "你好"
+        },
+        {
+          "type": 2,
+          "message": "有事"
+        },
+        {
+          "type": 3,
+          "message": "干啥"
+        }
+      ]
+    },
+    "117": {
+      "userInfo": {
+        "username": "残阳如雪",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+          "type": 1,
+          "message": "(*╹▽╹*)"
+        },
+        {
+          "type": 2,
+          "message": "你好，我是机器人"
+        }
+      ]
+    }
+  }
+}

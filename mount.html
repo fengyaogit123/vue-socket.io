@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>测试 拖拽</title>
+  </head>
+  <body style="position: relative">
+    <div id="app"></div>
+  </body>
+  <script>
+    var startX = 0;
+    var startY = 0;
+    var press = false;
+
+    var dom = document.getElementById('app');
+    dom.onmousedown = event => { // 左右拖动
+      if (!press) {
+        event.preventDefault();
+        console.log('onmousedown 按下');
+        startX = event.clientX;
+        startY = event.clientY;
+        press = true;
+      }
+    };
+    dom.onmousemove = event => { // 左右拖动
+      event.preventDefault();
+      if (press) {
+        console.log(event.clientX, startX);
+        let width = event.clientX - startX + 100 + 'px';
+        let height = event.clientY - startY + 100 + 'px';
+
+        dom.style.left = width;
+        dom.style.top = height;
+        console.log('onmousemove 移动', width, height);
+      }
+    };
+    dom.onmouseup = event => { // 左右拖动
+      if (press) {
+        event.preventDefault();
+        console.log('onmousemove 松开');
+        startX = 0;
+        startY = 0;
+        press = false;
+      }
+    };
+
+  </script>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    #app {
+      width: 8px;
+      height: 200px;
+      background: red;
+      display: block;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+    }
+  </style>
+</html>
