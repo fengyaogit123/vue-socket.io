@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router/index.js';
-import store from './vuex/index.js';
+import store from './store/index.js';
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

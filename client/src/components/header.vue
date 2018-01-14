@@ -1,6 +1,9 @@
 <template>
 <div class="header">
-  <div class="bg"></div>
+  <div class="bg">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
   <div class="box">
     <div class="left">
       <img class="user" src="../images/user_icon.jpg" />
@@ -10,7 +13,14 @@
         <img :class="item.class" :src="item.src" />
       </div>
     </div>
-    <div class="right"></div>
+    <div class="right">
+      <div class="icon">
+        <div class="item"><img src="../images/login/menu.png" /></div>
+        <div class="item"><img src="../images/login/small.png" /></div>
+        <div class="item"><img src="../images/login/big.png" /></div>
+        <div class="item close"><img src="../images/login/close.png" /></div>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -64,11 +74,20 @@ export default {
     position: relative;
     .bg {
       width: 100%;
-      background: #1991ed;
       height: 100%;
       position: absolute;
       top: 0;
       left: 0;
+      display: flex;
+      .left {
+        width: 65%;
+        background: #0086f1;
+      }
+      .right {
+        flex: 1;
+        background: #3448a1 url(../images/header_bg.png) no-repeat 0 center;
+        background-size: auto 56px;
+      }
     }
     .box {
       position: absolute;
@@ -117,6 +136,28 @@ export default {
       }
       .right {
           flex: 1;
+          position: relative;
+          .icon {
+            position: absolute;
+            top: 13px;
+            right: 0;
+            display: flex;
+            font-size: 0;
+            .item {
+              margin: 5px;
+              border-radius: 3px;
+              opacity: 0.5;
+              img {
+                padding: 1px;
+              }
+              &:hover {
+                opacity: 1;
+                &.close{
+                  background: red;
+                }
+              }
+            }
+          }
       }
     }
 
