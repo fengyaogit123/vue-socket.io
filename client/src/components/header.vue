@@ -4,7 +4,7 @@
     <div class="left"></div>
     <div class="right"></div>
   </div>
-  <div class="box">
+  <div class="box" ref="bg">
     <div class="left">
       <img class="user" src="../images/user_icon.jpg" />
     </div>
@@ -28,8 +28,16 @@
 
 <script>
 export default {
+  props: ['move'],
   data () {
     return {
+      transformX: 0,
+      transformY: 0,
+      positionX: 0,
+      positionY: 0,
+      startX: 0,
+      startY: 0,
+      status: false,
       tabList: [
         {
           class: 'chat',
@@ -55,6 +63,24 @@ export default {
     this.tabList.map(item => {
       if ('/' + item.class === this.$route.path) this.tabIndex = item.index;
     });
+  },
+  mounted () {
+    this.$refs.bg.onmousedown = (e) => {
+      this.status = true;
+      this.positionX = e.clientX - this.transformX; // 相对于login的postion位置
+      this.positionY = e.clientY - this.transformY;
+      this.startX = e.clientX;
+      this.startY = e.clientY;
+    };
+    document.onmousemove = (e) => {
+      if (!this.status) return;
+      this.transformX = e.clientX - this.positionX;
+      this.transformY = e.clientY - this.positionY;
+      this.move(this.transformX, this.transformY);
+    };
+    document.onmouseup = (e) => {
+      this.status = false;
+    };
   },
   methods: {
     tabEvent (item) {

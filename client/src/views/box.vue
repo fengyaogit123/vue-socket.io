@@ -1,6 +1,6 @@
 <template>
-  <div class="chat-box">
-    <ai-header></ai-header>
+  <div class="chat-box" :style="`transform: translate3d(${transformX}px, ${transformY}px, 0);`">
+    <ai-header :move="moveEvent"></ai-header>
     <router-view class="main-box"></router-view>
   </div>
 </template>
@@ -13,9 +13,15 @@ export default {
   },
   data () {
     return {
+      transformX: 0,
+      transformY: 0
     };
   },
   methods: {
+    moveEvent (x, y) {
+      this.transformX = x;
+      this.transformY = y;
+    }
   }
 };
 </script>
