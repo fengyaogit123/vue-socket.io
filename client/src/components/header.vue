@@ -6,7 +6,7 @@
   </div>
   <div class="box" ref="bg">
     <div class="left">
-      <img class="user" src="../images/user_icon.jpg" />
+      <img class="user" src="../images/user/user_icon.jpg" />
     </div>
     <div class="center">
       <div class="item" v-for="item in tabList" @click="tabEvent(item)" :class="{active: item.index === tabIndex}">
