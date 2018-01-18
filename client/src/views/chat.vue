@@ -43,10 +43,10 @@
           <div class="bottom-item setting"></div>
         </div>
         <div class="bottom-center">
-          <textarea class="textarea" autofocus="autofocus"></textarea>
+          <textarea class="textarea" ref="message" autofocus placeholder="Ctrl + K 可发送消息" v-model="message"></textarea>
         </div>
         <div class="btn-box">
-          <div class="button" ref="btn" @click="sendMessageEvent()">发送（S）</div>
+          <div class="button" ref="btn" @click="sendMessageEvent()">发送</div>
         </div>
       </div>
     </div>
@@ -64,7 +64,8 @@ export default {
   data () {
     return {
       start: 0,
-      press: false
+      press: false,
+      message: ''
     };
   },
   computed: {
@@ -73,13 +74,17 @@ export default {
     })
   },
   mounted () {
+    this.$refs.message.onkeyup = (e) => {
+      if (event.ctrlKey && event.keyCode === 13) {
+        this.sendMessageEvent();
+      }
+    };
     this.$refs.btn.onmousedown = event => { // 发送消息不失去焦点
       event.preventDefault();
     };
     this.$refs.resize.onmousedown = event => { // 左右拖动
       event.preventDefault();
       if (!this.press) {
-        console.log('onmousedown 按下');
         this.start = event.clientX;
         this.press = true;
       }
@@ -88,14 +93,12 @@ export default {
       if (this.press) {
         event.preventDefault();
         let width = event.clientX - this.start + 200;
-          console.log('onmousemove 移动', width);
         this.changeUserListResize(width);
       }
     };
     document.getElementById('app').onmouseup = event => { // 左右拖动
       if (this.press) {
         event.preventDefault();
-        console.log('onmousemove 松开');
         this.press = false;
       }
     };
@@ -104,7 +107,11 @@ export default {
     ...mapMutations(['changeUserListResize']),
     ...mapActions([]),
     sendMessageEvent () {
-
+      console.log(this.message);
+      this.message = '';
+    },
+    wrap () {
+      this.message += '\n';
     }
   }
 };
