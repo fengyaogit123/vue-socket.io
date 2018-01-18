@@ -1,6 +1,18 @@
 {
   "list": {
-    "100": {
+    "1": {
+      "userInfo": {
+        "username": "机器人",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/group.png",
+        "userId": 100
+      },
+      "noReadNum": 0,
+      "list": [{
+        "type": 1,
+        "message": "你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)"
+      }]
+    },
+    "2": {
       "userInfo": {
         "username": "全站聊天室",
         "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/group.png",
