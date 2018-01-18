@@ -1,10 +1,10 @@
 {
   "list": {
-    "1": {
+    "10": {
       "userInfo": {
         "username": "机器人",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/group.png",
-        "userId": 100
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/robot.png",
+        "userId": 10
       },
       "noReadNum": 0,
       "list": [{
@@ -12,11 +12,11 @@
         "message": "你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)"
       }]
     },
-    "2": {
+    "20": {
       "userInfo": {
         "username": "全站聊天室",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/group.png",
-        "userId": 100
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/group.png",
+        "userId": 20
       },
       "noReadNum": 0,
       "list": [{
@@ -27,7 +27,7 @@
     "101": {
       "userInfo": {
         "username": "夕阳如故",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -48,7 +48,7 @@
     "102": {
       "userInfo": {
         "username": "残阳如雪",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -65,7 +65,7 @@
     "103": {
       "userInfo": {
         "username": "机器人",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -77,7 +77,7 @@
     "104": {
       "userInfo": {
         "username": "夕阳如故",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -122,7 +122,7 @@
     "105": {
       "userInfo": {
         "username": "残阳如雪",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -139,7 +139,7 @@
     "106": {
       "userInfo": {
         "username": "机器人",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -151,7 +151,7 @@
     "107": {
       "userInfo": {
         "username": "夕阳如故",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -172,7 +172,7 @@
     "108": {
       "userInfo": {
         "username": "残阳如雪",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -189,7 +189,7 @@
     "109": {
       "userInfo": {
         "username": "机器人",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -201,7 +201,7 @@
     "110": {
       "userInfo": {
         "username": "夕阳如故",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -222,7 +222,7 @@
     "111": {
       "userInfo": {
         "username": "残阳如雪",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -239,7 +239,7 @@
     "112": {
       "userInfo": {
         "username": "机器人",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -251,7 +251,7 @@
     "113": {
       "userInfo": {
         "username": "夕阳如故",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -272,7 +272,7 @@
     "114": {
       "userInfo": {
         "username": "残阳如雪",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -289,7 +289,7 @@
     "115": {
       "userInfo": {
         "username": "机器人",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/2.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -301,7 +301,7 @@
     "116": {
       "userInfo": {
         "username": "夕阳如故",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/1.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,
@@ -322,7 +322,7 @@
     "117": {
       "userInfo": {
         "username": "残阳如雪",
-        "avatar": "https://raw.githubusercontent.com/beautifulBoys/beautifulBoys.github.io/master/source/socket.io/images/3.png",
+        "avatar": "https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/boy1.png",
         "userId": 100
       },
       "noReadNum": 0,

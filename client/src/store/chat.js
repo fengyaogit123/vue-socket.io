@@ -5,7 +5,7 @@ export default {
   state: {
     userListResize: 200,
     userList: list,
-    itemIndex: 100 // -2 ：默认没有选中的情况， -1 ：群组聊天室，   0-9 ：正常
+    itemIndex: 10 // -2 ：默认没有选中的情况， -1 ：群组聊天室，   0-9 ：正常
   },
   mutations: {
     itemChangeEvent (state, key) {
