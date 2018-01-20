@@ -3,9 +3,7 @@ import {list} from './user.json';
 export default {
   namespaced: true,
   state: {
-    userListResize: 200,
-    userList: list,
-    itemIndex: 10 // -2 ：默认没有选中的情况， -1 ：群组聊天室，   0-9 ：正常
+    userListResize: 200
   },
   mutations: {
     itemChangeEvent (state, key) {
@@ -19,8 +17,6 @@ export default {
     }
   },
   actions: {
-    getDataEvent ({ commit, state }) {
 
-    }
   }
 };

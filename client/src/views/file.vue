@@ -2,21 +2,25 @@
   <div class="chat">
     <div class="header">友情链接</div>
     <div class="main">
-      <div class="item">
-          <img src="" />
-          <div class="title">旅游圈</div>
-          <div class="desc">在线分享旅游的社交网站。</div>
+      <div class="item" v-for="(item, index) in list">
+          <div class="img">
+            <img :src="item.url" />
+          </div>
+          <div class="title">{{item.title}}</div>
+          <div class="desc">{{item.desc}}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {list} from './file.json';
 export default {
   components: {
   },
   data () {
     return {
+      list: list
     };
   },
   methods: {
@@ -44,20 +48,31 @@ export default {
       .item {
         width: 150px;
         border: 1px solid #fff;
-        padding: 10px;
+        padding: 10px 7px;
+        margin: 3px;
         box-sizing: border-box;
         display: inline-block;
+        cursor: default;
         &:hover {
           border: 1px solid #ccc;
+          img {
+            transform: scale(1.4);
+          }
         }
-        img {
+        .img {
           width: 100%;
           height: 90px;
-          background: #eee;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            transition: all 1s;
+          }
         }
         .title {
           font-size: 14px;
           color: #333;
+          margin-top: 5px;
         }
         .desc {
           font-size: 12px;

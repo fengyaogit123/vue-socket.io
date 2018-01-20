@@ -56,7 +56,7 @@
 <script>
 import left from '../components/chat/left.vue';
 import { createNamespacedHelpers } from 'vuex';
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box/chat');
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box');
 export default {
   components: {
     'ai-left': left

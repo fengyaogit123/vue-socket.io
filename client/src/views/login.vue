@@ -12,16 +12,19 @@
 
     <div class="bottom">
       <div class="center">
-        <input class="input username" placeholder="用户名" type="text" />
-        <input class="input password" placeholder="密码" type="password" />
-        <div class="button">登  录</div>
+        <input class="input username" v-model="username" placeholder="用户名" type="text" />
+        <input class="input password" v-model="password" placeholder="密码" type="password" />
+        <div class="error-tip">{{error_tip}}</div>
+        <div class="button" @click="loginEvent()">登  录</div>
       </div>
-      <div class="tip">首次登录将为您注册新账号（共享旅游圈账号体系）</div>
+      <div class="tip">共享旅游圈账号体系，没有账号请先去 <span class="register" @click="registerEvent()"> 注 册 </span></div>
     </div>
   </div>
 </template>
 
 <script>
+import {tourism_url} from '../config/index.js';
+import { mapState, mapActions, mapMutations } from 'vuex';
 export default {
   components: {
   },
@@ -33,8 +36,16 @@ export default {
       positionY: 0,
       startX: 0,
       startY: 0,
-      status: false
+      tourismUrl: tourism_url,
+      status: false,
+      username: '',
+      password: ''
     };
+  },
+  computed: {
+    ...mapState({
+      error_tip: state => state.box.error_tip
+    })
   },
   mounted () {
     this.$refs.top.onmousedown = (e) => {
@@ -54,6 +65,23 @@ export default {
     };
   },
   methods: {
+    ...mapMutations([]),
+    ...mapActions([]),
+    registerEvent () {
+      window.open(this.tourismUrl);
+    },
+    loginEvent () {
+      let me = this;
+      this.$store.dispatch('box/login', {
+        username: this.username,
+        password: this.password,
+        cbb (obj) {
+          if (obj.code === 200) {
+            me.$router.replace({path: '/chat'});
+          }
+        }
+      });
+    }
   }
 };
 </script>
@@ -159,6 +187,11 @@ export default {
             border-radius: 0 0 5px 5px;
           }
         }
+        .error-tip {
+          font-size: 13px;
+          color: red;
+          line-height: 20px;
+        }
         .button {
           width: 100%;
           line-height: 35px;
@@ -183,6 +216,14 @@ export default {
         font-size: 14px;
         color: #666;
         border-top: 1px solid rgba(187,187,0,0.1);
+        .register {
+          color: rgb(7,118,209);
+          text-decoration: underline;
+          cursor: pointer;
+          &:hover {
+            color: rgb(7,66,166);
+          }
+        }
       }
     }
   }

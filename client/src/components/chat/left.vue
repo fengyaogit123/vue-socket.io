@@ -21,7 +21,7 @@
 <script>
 import {loading} from '../../images/image.json';
 import { createNamespacedHelpers } from 'vuex';
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box/chat');
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box');
 export default {
   data () {
     return {

@@ -5,9 +5,21 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box');
 export default {
-  components: {
-
+  created () {
+    if (Cookies.get('userId') && Cookies.get('username') && Cookies.get('passport')) {
+      this.$router.replace({path: '/chat'});
+      window.loginStatus = true;
+    } else {
+      this.clearUserInfo();
+      this.$router.replace({path: '/login'});
+    }
+  },
+  methods: {
+    ...mapMutations(['clearUserInfo'])
   }
 };
 </script>

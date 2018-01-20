@@ -6,7 +6,7 @@
   </div>
   <div class="box" ref="bg">
     <div class="left">
-      <img class="user" src="../images/user/user_icon.jpg" />
+      <img class="user" :src="userInfo.avatar" />
     </div>
     <div class="center">
       <div class="item" v-for="item in tabList" @click="tabEvent(item)" :class="{active: item.index === tabIndex}">
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations } from 'vuex';
 export default {
   props: ['move'],
   data () {
@@ -57,6 +58,11 @@ export default {
       ],
       tabIndex: 0
     };
+  },
+  computed: {
+    ...mapState({
+      userInfo: state => state.box.userInfo
+    })
   },
   created () {
     console.log(this.$route.path);
