@@ -13,18 +13,18 @@
                   </div>
                   <div class="message-center">
                     <div class="user">{{ user.userInfo.username }}</div>
-                    <div class="text"><span class="horn">◀</span>{{ item.message }}</div>
+                    <pre class="text"><span class="horn">◀</span>{{ item.message }}</pre>
                   </div>
                   <div class="message-right"></div>
                 </div>
                 <div class="message right-hook" v-if="item.type === 3">
                   <div class="message-left"></div>
                   <div class="message-center">
-                    <div class="user">{{ user.userInfo.username }}</div>
-                    <div class="text"><span class="horn">▶</span>{{ item.message }}</div>
+                    <div class="user">{{ meInfo.username }}</div>
+                    <pre class="text"><span class="horn">▶</span>{{ item.message }}</pre>
                   </div>
                   <div class="message-right">
-                    <img :src="user.userInfo.avatar"/>
+                    <img :src="meInfo.avatar" />
                   </div>
                 </div>
                 <div class="message center-hook" v-if="item.type === 1">
@@ -70,7 +70,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state => state.userList[state.itemIndex]
+      user: state => state.userList[state.itemIndex],
+      meInfo: state => state.userInfo
     })
   },
   mounted () {
@@ -105,9 +106,14 @@ export default {
   },
   methods: {
     ...mapMutations(['changeUserListResize']),
-    ...mapActions([]),
+    ...mapActions(['sendMessage']),
     sendMessageEvent () {
       console.log(this.message);
+      if (this.message.length < 1) {
+        console.log('此处在发送按钮上弹出空消息的提示');
+        return;
+      }
+      this.sendMessage({message: this.message});
       this.message = '';
     },
     wrap () {
@@ -140,7 +146,7 @@ export default {
       .center {
         width: 100%;
         flex: 1;
-        padding: 0 10px;
+        padding: 0 15px 0 10px;
         box-sizing: border-box;
         overflow-y: auto;
         .scroll-box {
@@ -176,8 +182,12 @@ export default {
                   flex: 1;
                   .text {
                       position: relative;
+                      font-family: "Microsoft yahei";
                       font-size: 13px;
                       padding: 10px 13px;
+                      margin: 0;
+                      word-break: break-all;
+                      overflow: auto;
                       border-radius: 8px;
                       line-height: 20px;
                       display: inline-block;

@@ -4,7 +4,13 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 import config from '../config/index.js';
 import chatRobot from './chat_robot.js';
-import {loginFunc, loginAndgetUserInfoFunc} from './chat_room_async.js';
+import {
+  loginFunc, 
+  loginAndgetUserInfoFunc,
+  messageFunc,
+  disconnectFunc,
+  userListFunc
+} from './chat_room_async.js';
 
 const errObj = {
   result: 0,
@@ -22,19 +28,24 @@ module.exports = function () {
     socket.on('auto-login', function (obj) {
       loginAndgetUserInfoFunc(socket, obj);
     });
+    // 获取在线用户列表
+    socket.on('user-list', function () {
+      userListFunc(socket);
+    });
     //监听新上线用户
     socket.on('online', function (obj) {
       
     });
 
     //监听用户退出
-    socket.on('disconnect', function () { // {userId: 1004}
-      
+    socket.on('disconnect', function (e) { // {userId: 1004}
+      console.log('有用户推出了：', e);
+      // disconnectFunc();
     });
 
     //监听用户发布聊天内容
     socket.on('message', function (obj) { // {fromId, toId, message}
-      
+      messageFunc(socket, obj);
     });
 
   });

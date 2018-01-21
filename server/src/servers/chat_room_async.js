@@ -1,5 +1,11 @@
 import User from '../model/user.js';
-
+/*
+socketMap = {
+    socket: socket,
+    user: {},
+    message: {}
+}     
+*/
 let socketMap = {};
 
 export const loginFunc = async (socket, obj) => {
@@ -90,3 +96,78 @@ export const loginAndgetUserInfoFunc = async (socket, obj) => {
     }
 };
 
+
+
+/*
+
+*/
+export const messageFunc = async (socket, obj) => {
+    let fromId = obj.fromId;
+    let toId = obj.toId;
+    let message = obj.message;
+    let messageId = obj.messageId;
+    try {
+        if (socketMap[toId]) {
+            socketMap[toId].socket.emit('message', {
+                code: 200,
+                message: '发送消息成功',
+                data: {
+                    fromId: toId,
+                    toId: fromId,
+                    message,
+                    type: 2
+                }
+            });
+            socket.emit('message-success', {
+                code: 200,
+                message: '发送成功',
+                messageId,
+                data: {}
+            });
+        }
+    } catch (err) {
+        socket.emit('message', {
+            code: 300, 
+            message: '啊哦，出错喽，请重试', 
+            data: err
+        });
+    }
+};
+
+
+
+/*
+
+*/
+export const disconnectFunc = async () => {
+    
+};
+
+
+
+/*
+
+*/
+export const userListFunc = async (socket) => {
+    let result = {};
+    for (let key in socketMap) {
+        result[key] = {
+            username: socketMap[key].user.username,
+            userId: socketMap[key].user.id,
+            avatar: socketMap[key].user.avatar
+        };
+    }
+    try {
+        socket.emit('user-list', {
+            code: 200,
+            message: '获取在线用户列表成功',
+            data: result
+        });
+    } catch (err) {
+        socket.emit('user-list', {
+            code: 300, 
+            message: '啊哦，出错喽，请重试', 
+            data: err
+        });
+    }
+};

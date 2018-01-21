@@ -7,7 +7,7 @@
 <script>
 import Cookies from 'js-cookie';
 import { createNamespacedHelpers } from 'vuex';
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box');
+const { mapMutations } = createNamespacedHelpers('box');
 export default {
   created () {
     if (Cookies.get('userId') && Cookies.get('username') && Cookies.get('passport')) {

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {tourism_url} from '../config/index.js';
+import {tourismUrl} from '../config/index.js';
 import { mapState, mapActions, mapMutations } from 'vuex';
 export default {
   components: {
@@ -36,7 +36,7 @@ export default {
       positionY: 0,
       startX: 0,
       startY: 0,
-      tourismUrl: tourism_url,
+      tourismUrl,
       status: false,
       username: '',
       password: ''

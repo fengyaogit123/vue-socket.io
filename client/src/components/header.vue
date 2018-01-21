@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex';
+import { mapState } from 'vuex';
 export default {
   props: ['move'],
   data () {

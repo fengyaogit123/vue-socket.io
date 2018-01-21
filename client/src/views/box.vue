@@ -27,16 +27,8 @@ export default {
         userId: Cookies.get('userId'),
         passport: Cookies.get('passport'),
         cbb (obj) {
-          if (obj.code === 200) {
-            me.$store.commit('box/saveUserInfo', obj.data);
-          } else if (obj.code === 300) {
-            console.log('这里采用上方弹出提示条的方式提醒用户出错喽。');
-          } else if (obj.code === 301) {
-            me.$store.commit('box/clearUserInfo');
+          if (obj.code === 301) {
             me.$router.replace('/login');
-            console.log('这里采用上方弹出提示条的方式提醒用户身份信息已过期，重新登录。');
-          } else {
-            console.log('这里出错了，请检查下');
           }
         }
       });
