@@ -1,4 +1,8 @@
 import User from '../model/user.js';
+import config from '../config/index.js';
+import chatRobot from './chat_robot.js';
+
+
 /*
 socketMap = {
     socket: socket,
@@ -15,16 +19,19 @@ export const loginFunc = async (socket, obj) => {
         let result = await User.findOne({username});
         if (result) {
             if (result.password === password) {
-                socket.emit('login', {
+                let send = {
                     code: 200, 
                     message: '登录成功', 
                     data: {userId: result.id, username: result.username, passport: result.passport, avatar: result.avatar}
-                });
+                };
+                socket.emit('login', send);
+                socket.broadcast.emit('online', send);
                 socketMap[result.id] = {
                     socket: socket,
                     user: result,
                     message: {}
                 };
+                console.log(result.username + ' 登录成功');
             } else {
                 socket.emit('login', {
                     code: 300, 
@@ -63,16 +70,19 @@ export const loginAndgetUserInfoFunc = async (socket, obj) => {
         let result = await User.findOne({id: userId});
         if (result) {
             if (result.passport === passport) {
-                socket.emit('auto-login', {
+                let send = {
                     code: 200, 
                     message: '自动登录成功', 
                     data: {userId: result.id, username: result.username, passport: result.passport, avatar: result.avatar}
-                });
+                };
+                socket.emit('auto-login', send);
+                socket.broadcast.emit('online', send);
                 socketMap[result.id] = {
                     socket: socket,
                     user: result,
                     message: {}
                 };
+                console.log(result.username + ' 自动登录成功');
             } else {
                 socket.emit('auto-login', {
                     code: 301, 
@@ -108,6 +118,7 @@ export const messageFunc = async (socket, obj) => {
     let messageId = obj.messageId;
     try {
         if (socketMap[toId]) {
+            console.log('这条消息是 ' + fromId + ' 发送给 ' + toId + ' 的');
             socketMap[toId].socket.emit('message', {
                 code: 200,
                 message: '发送消息成功',
@@ -124,6 +135,33 @@ export const messageFunc = async (socket, obj) => {
                 messageId,
                 data: {}
             });
+        } else if (toId - 0 === config.robot_id) {
+            chatRobot(message, (result) => {
+                socket.emit('message', {
+                    code: 200,
+                    message: '发送消息成功',
+                    data: {
+                        fromId,
+                        toId,
+                        message: result.content,
+                        type: 2
+                    }
+                });
+            });
+        } else if (toId - 0 === config.group_id) {
+            console.log('我是群组消息', fromId, toId);
+            socket.broadcast.emit('message', {
+                code: 200,
+                message: '发送消息成功',
+                data: {
+                    fromId,
+                    toId,
+                    message,
+                    type: 2
+                }
+            });
+        } else {
+            console.log('148行 出错了');
         }
     } catch (err) {
         socket.emit('message', {
@@ -139,8 +177,16 @@ export const messageFunc = async (socket, obj) => {
 /*
 
 */
-export const disconnectFunc = async () => {
-    
+export const disconnectFunc = async (socket) => {
+    for (var k in socketMap) {
+        if (socketMap[k].socket === socket) {
+            console.log(socketMap[k].user.username + ' 退出');
+            socket.broadcast.emit('logout', {
+                username: socketMap[k].user.username,
+                userId: socketMap[k].user.id
+            });
+        }
+    }
 };
 
 

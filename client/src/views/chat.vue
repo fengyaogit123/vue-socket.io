@@ -4,8 +4,8 @@
     <div class="resize" ref="resize"></div>
     <div class="right-box">
       <div class="top">{{user.userInfo.username}}</div>
-      <div class="center" ref="scroll">
-        <div class="scroll-box">
+      <div class="center">
+        <div class="scroll-box" ref="scroll">
               <div v-for="item in user.list">
                 <div class="message left-hook" v-if="item.type === 2">
                   <div class="message-left">
@@ -70,11 +70,18 @@ export default {
   },
   computed: {
     ...mapState({
+      itemIndex: state => state.itemIndex,
       user: state => state.userList[state.itemIndex],
       meInfo: state => state.userInfo
     })
   },
+  watch: {
+    itemIndex (n, o) {
+      this.scroll();
+    }
+  },
   mounted () {
+    this.saveScrollFunc(this.scroll);
     this.$refs.message.onkeyup = (e) => {
       if (event.ctrlKey && event.keyCode === 13) {
         this.sendMessageEvent();
@@ -105,7 +112,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['changeUserListResize']),
+    ...mapMutations(['changeUserListResize', 'saveScrollFunc']),
     ...mapActions(['sendMessage']),
     sendMessageEvent () {
       console.log(this.message);
@@ -114,10 +121,17 @@ export default {
         return;
       }
       this.sendMessage({message: this.message});
+      this.scroll();
       this.message = '';
     },
     wrap () {
       this.message += '\n';
+    },
+    scroll () {
+      let me = this;
+      this.$nextTick(() => {
+        me.$refs.scroll.scrollTop = this.$refs.scroll.scrollHeight;
+      });
     }
   }
 };

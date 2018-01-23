@@ -39,8 +39,8 @@ module.exports = function () {
 
     //监听用户退出
     socket.on('disconnect', function (e) { // {userId: 1004}
-      console.log('有用户推出了：', e);
-      // disconnectFunc();
+      // console.log('有用户推出了：', e);
+      disconnectFunc(socket);
     });
 
     //监听用户发布聊天内容

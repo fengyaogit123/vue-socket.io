@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import Vue from 'vue';
 import {socketUrl} from '../config/index.js';
 import md5 from '../lib/md5.js';
 import Cookies from 'js-cookie';
@@ -8,6 +9,7 @@ import chat from './chat.js';
 export default {
   namespaced: true,
   state: {
+    scrollFunc: null, // 滚动条置底方法
     userListResize: 200,
     itemIndex: 10, // -2 ：默认没有选中的情况， -1 ：群组聊天室，   0-9 ：正常
     userInfo: {
@@ -23,6 +25,7 @@ export default {
         userId: 0
       },
       noReadNum: 0,
+      status: false, // true 时变灰色
       list: []
     },
     messageId: 0,
@@ -55,6 +58,9 @@ export default {
     error_tip: ''
   },
   mutations: {
+    saveScrollFunc (state, fn) {
+      state.scrollFunc = fn;
+    },
     error_tip_change (state, text) {
       state.error_tip = text;
     },
@@ -64,11 +70,36 @@ export default {
     itemChangeEvent (state, n) {
       state.itemIndex = n;
     },
+    deleteLogoutItem (state, obj) {
+      state.userList[obj.userId].status = true;
+    },
+    addUserItem (state, obj) {
+      if (state.userList[obj.userId]) {
+        state.userList[obj.userId].status = false;
+      } else {
+        state.template = {
+          userInfo: {
+            username: obj.username,
+            avatar: obj.avatar,
+            userId: obj.userId
+          },
+          noReadNum: 0,
+          status: false,
+          list: []
+        };
+        Vue.set(state.userList, obj.userId, state.template);
+      }
+    },
+    receiveMessage (state, obj) {
+      state.userList[obj.toId].list.push({
+        type: 2,
+        message: obj.message
+      });
+    },
     messageIdChange (state) {
       state.messageId += 1;
     },
     userListChange (state, obj) {
-      console.log(obj);
       for (let k in obj) {
         if ((obj[k].userId - 0 !== state.userInfo.userId - 0) && !state.userList[k]) {
           state.template = {
@@ -78,12 +109,12 @@ export default {
               userId: obj[k].userId
             },
             noReadNum: 0,
+            status: false,
             list: []
           };
-          state.userList[k] = state.template;
+          Vue.set(state.userList, k, state.template);
         }
       }
-      console.log(state.userList);
     },
     saveUserInfo (state, obj) {
       Cookies.set('username', obj.username, { expires: 1 });
@@ -164,11 +195,21 @@ export default {
           console.log('这里确认下，不完善');
         }
       });
+      state.httpServer.on('online', obj => { // {userId: 1004}
+        // console.log(obj.username + '退出');
+        commit('addUserItem', obj.data);
+      });
       state.httpServer.on('logout', obj => { // {userId: 1004}
-
+        console.log(obj.username + '退出');
+        commit('deleteLogoutItem', obj);
       });
       state.httpServer.on('message', obj => { // {fromId, toId, type, message}
-
+        if (obj.code === 200) {
+          commit('receiveMessage', obj.data);
+          state.scrollFunc();
+        } else {
+          console.log(obj);
+        }
       });
     },
     sendMessage ({state, commit}, {message}) {

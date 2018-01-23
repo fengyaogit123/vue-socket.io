@@ -1,6 +1,6 @@
 <template>
   <div class="left" :style="{width: userListResize + 'px'}">
-    <div class="item" :class="{checked: itemIndex === key - 0}" v-for="(item, key) in userList" @click="itemChangeEvent(key - 0)">
+    <div class="item" :class="{checked: itemIndex === key - 0, gray: item.status}" v-for="(item, key) in userList" @click="itemChangeEvent(key - 0)">
       <div class="icon">
         <img :src="item.userInfo.avatar" />
       </div>
@@ -98,12 +98,28 @@ export default {
         &.active {
           background: rgb(235,235,235);
         }
+        &.gray {
+          .icon img {
+            filter: grayscale(100%);
+            opacity: 0.7;
+          }
+          .user .username {
+            color: #999;
+          }
+          .user .message {
+            color: #bbb;
+          }
+        }
         .icon {
           height: 40px;
           width: 40px;
           img {
             height: 100%;
             border-radius: 100%;
+            &.gray {
+              filter: grayscale(100%);
+              opacity: 0.7;
+            }
           }
         }
         .user {
