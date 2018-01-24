@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import Vue from 'vue';
-import {socketUrl} from '../config/index.js';
+import {socketUrl, groupId, robotId} from '../config/index.js';
 import md5 from '../lib/md5.js';
 import Cookies from 'js-cookie';
 import chat from './chat.js';
@@ -11,7 +11,7 @@ export default {
   state: {
     scrollFunc: null, // 滚动条置底方法
     userListResize: 200,
-    itemIndex: 10, // -2 ：默认没有选中的情况， -1 ：群组聊天室，   0-9 ：正常
+    itemIndex: robotId, // -2 ：默认没有选中的情况， -1 ：群组聊天室，   0-9 ：正常
     userInfo: {
       userId: '',
       passport: '',
@@ -32,11 +32,11 @@ export default {
     httpServer: null,
     connect: false,
     userList: {
-      '10': {
+      [robotId]: {
         userInfo: {
           username: '机器人',
           avatar: 'https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/robot.png',
-          userId: 10
+          userId: robotId
         },
         noReadNum: 0,
         list: [{
@@ -44,11 +44,11 @@ export default {
           message: '你好，我是机器人 “菲菲”，你想和我聊什么呀？(*╹▽╹*)'
         }]
       },
-      '20': {
+      [groupId]: {
         userInfo: {
           username: '全站聊天室',
           avatar: 'https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/group.png',
-          userId: 20
+          userId: groupId
         },
         noReadNum: 0,
         list: []
@@ -92,11 +92,20 @@ export default {
       }
     },
     receiveMessage (state, obj) {
-      state.userList[obj.toId].list.push({
-        type: 2,
-        message: obj.message
-      });
-      if (state.itemIndex - 0 !== obj.toId - 0) state.userList[obj.toId].noReadNum++;
+      if (obj.messageType === 'group') {
+        state.userList[groupId].list.push({
+          type: 2,
+          message: obj.message,
+          user: obj.user
+        });
+        if (state.itemIndex - 0 !== groupId - 0) state.userList[groupId].noReadNum++;
+      } else {
+        state.userList[obj.toId].list.push({
+          type: 2,
+          message: obj.message
+        });
+        if (state.itemIndex - 0 !== obj.toId - 0) state.userList[obj.toId].noReadNum++;
+      }
     },
     messageIdChange (state) {
       state.messageId += 1;
@@ -216,17 +225,24 @@ export default {
     },
     sendMessage ({state, commit}, {message}) {
       let messageId = `${state.messageId}_${md5(message)}`;
-      commit('messageIdChange');
+      commit('messageIdChange'); // 保证本客户端的消息的唯一性，后续为发送消息是否成功留。
+      let messageTypeMap = { // 后续会增加匿名聊天室
+        [robotId]: 'robot',
+        [groupId]: 'group'
+      };
+      let messageType = messageTypeMap[state.itemIndex] || 'user';
       state.userList[state.itemIndex].list.push({
-        type: 3,
+        fromUser: state.userInfo,
         message,
-        messageId
+        type: 3,
+        messageType
       });
       state.httpServer.emit('message', {
         fromId: state.userInfo.userId,
         toId: state.itemIndex,
         message: message,
-        messageId
+        messageId,
+        messageType
       });
     }
   },

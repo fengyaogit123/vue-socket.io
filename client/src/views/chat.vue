@@ -9,10 +9,10 @@
               <div v-for="item in user.list">
                 <div class="message left-hook" v-if="item.type === 2">
                   <div class="message-left">
-                    <img :src="user.userInfo.avatar"/>
+                    <img :src="groupId - 0 === itemIndex - 0 ? item.user.avatar : user.userInfo.avatar"/>
                   </div>
                   <div class="message-center">
-                    <div class="user">{{ user.userInfo.username }}</div>
+                    <div class="user">{{ groupId - 0 === itemIndex - 0 ? item.user.username : user.userInfo.username }}</div>
                     <pre class="text"><span class="horn">◀</span>{{ item.message }}</pre>
                   </div>
                   <div class="message-right"></div>
@@ -55,6 +55,7 @@
 
 <script>
 import left from '../components/chat/left.vue';
+import {groupId} from '../config/index.js';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box');
 export default {
@@ -65,6 +66,7 @@ export default {
     return {
       start: 0,
       press: false,
+      groupId,
       message: ''
     };
   },

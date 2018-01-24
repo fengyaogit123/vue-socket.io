@@ -116,6 +116,7 @@ export const messageFunc = async (socket, obj) => {
     let toId = obj.toId;
     let message = obj.message;
     let messageId = obj.messageId;
+    let messageType = obj.messageType;
     try {
         if (socketMap[toId]) {
             console.log('这条消息是 ' + fromId + ' 发送给 ' + toId + ' 的');
@@ -126,7 +127,8 @@ export const messageFunc = async (socket, obj) => {
                     fromId: toId,
                     toId: fromId,
                     message,
-                    type: 2
+                    type: 2,
+                    messageType
                 }
             });
             socket.emit('message-success', {
@@ -144,20 +146,24 @@ export const messageFunc = async (socket, obj) => {
                         fromId,
                         toId,
                         message: result.content,
-                        type: 2
+                        type: 2,
+                        messageType
                     }
                 });
             });
         } else if (toId - 0 === config.group_id) {
-            console.log('我是群组消息', fromId, toId);
             socket.broadcast.emit('message', {
                 code: 200,
                 message: '发送消息成功',
                 data: {
-                    fromId,
-                    toId,
+                    user: {
+                        userId: socketMap[fromId].user.id,
+                        username: socketMap[fromId].user.username,
+                        avatar: socketMap[fromId].user.avatar
+                    },
                     message,
-                    type: 2
+                    type: 2,
+                    messageType
                 }
             });
         } else {
