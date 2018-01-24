@@ -69,6 +69,7 @@ export default {
     },
     itemChangeEvent (state, n) {
       state.itemIndex = n;
+      state.userList[state.itemIndex].noReadNum = 0;
     },
     deleteLogoutItem (state, obj) {
       state.userList[obj.userId].status = true;
@@ -95,6 +96,7 @@ export default {
         type: 2,
         message: obj.message
       });
+      if (state.itemIndex - 0 !== obj.toId - 0) state.userList[obj.toId].noReadNum++;
     },
     messageIdChange (state) {
       state.messageId += 1;

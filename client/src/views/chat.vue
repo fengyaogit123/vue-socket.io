@@ -201,7 +201,6 @@ export default {
                       padding: 10px 13px;
                       margin: 0;
                       word-break: break-all;
-                      overflow: auto;
                       border-radius: 8px;
                       line-height: 20px;
                       display: inline-block;
