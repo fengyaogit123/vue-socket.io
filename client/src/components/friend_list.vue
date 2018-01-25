@@ -1,31 +1,26 @@
 <template>
-  <div class="left" :style="{width: userListResize + 'px'}">
-    <div class="item" :class="{checked: itemIndex === key - 0, gray: item.status}" v-for="(item, key) in userList" @click="itemChangeEvent(key - 0)">
+  <div class="friend-list" :style="{width: '200px'}">
+    <div class="item" v-for="(item, index) in 6" :key="index">
       <div class="icon">
-        <img :src="item.userInfo.avatar" />
+        <img src="../images/user/boy1.png" />
+        <img src="../images/user/boy2.png" />
+        <img src="../images/user/girl1.png" />
+        <img src="../images/user/boy3.png" />
       </div>
       <div class="user">
-        <div class="username">{{item.userInfo.username}}</div>
-        <div class="message">暂无消息</div>
-      </div>
-      <div class="delete">
-        <div class="close" @click="deleteEvent($event, key)">✖</div>
-      </div>
-      <div class="active" v-show="item.noReadNum">
-        <div class="text">{{item.noReadNum}}</div>
+        <div class="username">深藏不漏</div>
+        <div class="message">这个群组还没有介绍呢</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {loading} from '../../images/image.json';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box');
 export default {
   data () {
     return {
-      default_user_icon: loading
     };
   },
   computed: {
@@ -62,11 +57,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 
-    .left {
+    .friend-list {
       background: rgb(250,250,250);
       min-width: 65px;
       max-width: 300px;
       overflow-y: auto;
+      font-size: 0;
       &:hover {
         &::-webkit-scrollbar {
           width: 8px;
@@ -80,7 +76,7 @@ export default {
         height: 60px;
         width: 100%;
         display: flex;
-        padding: 10px 3px 10px 10px;
+        padding: 5px;
         box-sizing: border-box;
         cursor: default;
         &:hover {
@@ -111,24 +107,25 @@ export default {
           }
         }
         .icon {
-          height: 40px;
-          width: 40px;
+          height: 50px;
+          width: 50px;
+          padding: 2px;
+          box-sizing: border-box;
+          background: #ddd;
           img {
-            height: 100%;
-            border-radius: 100%;
-            &.gray {
-              filter: grayscale(100%);
-              opacity: 0.7;
-            }
+            width: 21px;
+            margin: 1px;
+            box-sizing: border-box;
+            display: inline-block;
           }
         }
         .user {
           flex: 1;
           margin-left: 7px;
           .username {
-            font-size: 15px;
+            font-size: 16px;
             color: #222;
-            line-height: 22px;
+            line-height: 28px;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1; // 超出行数

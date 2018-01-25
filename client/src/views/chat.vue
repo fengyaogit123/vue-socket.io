@@ -1,6 +1,6 @@
 <template>
   <div class="chat">
-    <ai-left></ai-left>
+    <ai-chat-list></ai-chat-list>
     <div class="resize" ref="resize"></div>
     <div class="right-box">
       <div class="top">{{user.userInfo.username}}</div>
@@ -54,13 +54,13 @@
 </template>
 
 <script>
-import left from '../components/chat/left.vue';
+import chat_list from '../components/chat_list.vue';
 import {groupId} from '../config/index.js';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers('box');
 export default {
   components: {
-    'ai-left': left
+    'ai-chat-list': chat_list
   },
   data () {
     return {

@@ -11,7 +11,8 @@ const { mapMutations } = createNamespacedHelpers('box');
 export default {
   created () {
     if (Cookies.get('userId') && Cookies.get('username') && Cookies.get('passport')) {
-      this.$router.replace({path: '/chat'});
+      // this.$router.replace({path: '/chat'});
+      // console.log(this.$route);
       window.loginStatus = true;
     } else {
       this.clearUserInfo();
