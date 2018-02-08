@@ -4,7 +4,7 @@ import {socketUrl, groupId, robotId} from '../config/index.js';
 import md5 from '../lib/md5.js';
 import Cookies from 'js-cookie';
 import chat from './chat.js';
-// import {list} from './user.json';
+import {group, robot} from '../images/user/userIcon.json';
 
 export default {
   namespaced: true,
@@ -35,7 +35,7 @@ export default {
       [robotId]: {
         userInfo: {
           username: '机器人',
-          avatar: 'https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/robot.png',
+          avatar: robot,
           userId: robotId
         },
         noReadNum: 0,
@@ -47,7 +47,7 @@ export default {
       [groupId]: {
         userInfo: {
           username: '全站聊天室',
-          avatar: 'https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/client/src/images/user/group.png',
+          avatar: group,
           userId: groupId
         },
         noReadNum: 0,
