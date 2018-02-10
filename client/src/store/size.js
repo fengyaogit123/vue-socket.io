@@ -2,13 +2,13 @@ export default {
   namespaced: true,
   state: {
     userListResize: 200,
-    screenSize: {
+    screenSize: { // chatBox的占位位置
       width: 0,
       height: 0,
       left: 0,
       top: 0
     },
-    chatBoxTransform: {
+    chatBoxTransform: { // chatbox的显示位置
       left: 0,
       top: 0
     }
