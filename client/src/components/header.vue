@@ -31,7 +31,7 @@ import {friend_img, file_img, chat_img} from '../images/header_img.json';
 import {big_img, close_img, menu_img, small_img, logo_img} from '../images/login_img.json';
 import { mapState } from 'vuex';
 export default {
-  props: ['move'],
+  props: ['resizeEvent'],
   data () {
     return {
       staticImg: {
@@ -91,10 +91,12 @@ export default {
       if (!this.status) return;
       this.transformX = e.clientX - this.positionX;
       this.transformY = e.clientY - this.positionY;
-      this.move(this.transformX, this.transformY);
+      // this.move(this.transformX, this.transformY);
+      this.$store.commit('size/transformChange', {x: this.transformX, y: this.transformY});
     };
     document.onmouseup = (e) => {
       this.status = false;
+      this.resizeEvent();
     };
   },
   methods: {

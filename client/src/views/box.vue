@@ -1,6 +1,6 @@
 <template>
-  <div class="chat-box" :style="`transform: translate3d(${transformX}px, ${transformY}px, 0);`">
-    <ai-header :move="moveEvent"></ai-header>
+  <div class="chat-box" ref="chatBox" :style="`transform: translate3d(${transformX}px, ${transformY}px, 0);`">
+    <ai-header :resizeEvent="getChatBoxSize"></ai-header>
     <keep-alive>
       <router-view class="main-box"></router-view>
     </keep-alive>
@@ -16,9 +16,15 @@ export default {
   },
   data () {
     return {
-      transformX: 0,
-      transformY: 0
     };
+  },
+  computed: {
+    transformX () {
+      return this.$store.state.size.chatBoxTransform.left;
+    },
+    transformY () {
+      return this.$store.state.size.chatBoxTransform.top;
+    }
   },
   created () {
     let me = this;
@@ -34,10 +40,20 @@ export default {
       });
     }
   },
+  mounted () {
+    this.getChatBoxSize();
+    window.onresize = () => {
+      this.getChatBoxSize();
+    };
+  },
   methods: {
-    moveEvent (x, y) {
-      this.transformX = x;
-      this.transformY = y;
+    getChatBoxSize () {
+      this.$store.commit('size/screenSizeChange', {
+        width: this.$refs.chatBox.clientWidth,
+        height: this.$refs.chatBox.clientHeight,
+        left: this.$refs.chatBox.offsetLeft,
+        top: this.$refs.chatBox.offsetTop
+      });
     }
   }
 };

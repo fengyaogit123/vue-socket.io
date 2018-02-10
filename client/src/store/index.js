@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 import box from './box.js';
 import login from './login.js';
+import size from './size.js';
 
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
   },
   modules: {
     box,
-    login
+    login,
+    size
   }
 });

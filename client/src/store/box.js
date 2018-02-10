@@ -61,6 +61,9 @@ export default {
     saveScrollFunc (state, fn) {
       state.scrollFunc = fn;
     },
+    screenSizeChange (state, obj) {
+      state.screenSize = obj;
+    },
     error_tip_change (state, text) {
       state.error_tip = text;
     },
