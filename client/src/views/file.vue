@@ -1,10 +1,11 @@
+
 <template>
   <div class="chat">
     <div class="header">友情链接</div>
     <div class="main">
       <div class="item" v-for="(item, index) in list">
           <div class="img">
-            <img :src="item.url" />
+            <img :src="item.url"/>
           </div>
           <div class="title">{{item.title}}</div>
           <div class="desc">{{item.desc}}</div>
