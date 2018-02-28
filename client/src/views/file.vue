@@ -23,8 +23,6 @@ export default {
     return {
       list: list
     };
-  },
-  methods: {
   }
 };
 </script>
