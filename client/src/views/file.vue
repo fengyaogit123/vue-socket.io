@@ -17,8 +17,7 @@
 <script>
 import {list} from './file.json';
 export default {
-  components: {
-  },
+  components: {},
   data () {
     return {
       list: list
