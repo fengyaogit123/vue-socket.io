@@ -17,6 +17,7 @@ export const loginFunc = async (socket, obj) => {
     let password = obj.password;
     try {
         let result = await User.findOne({username});
+        console.log(JSON.stringify(result));
         if (result) {
             if (result.password === password) {
                 let send = {
