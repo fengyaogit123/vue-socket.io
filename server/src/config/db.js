@@ -13,7 +13,6 @@ function dbconnect () {
   db.on('close', () => {
     console.log('数据库断开，重新连接数据库');
   });
-  return db;
 }
 
 export default dbconnect;
