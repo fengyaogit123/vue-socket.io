@@ -6,12 +6,13 @@
       <div class="center" ref="scroll">
         <ul ref="ul">
           <li :class="{small: item.small}"
-              v-for="(item, index) in userList" :key="index"
-              :data="item.userId"
-              :style="`background: url(${item.url}) no-repeat center center;background-size: 100% 100%;`"
+              v-for="(item, index) in onlineUserList"
+              :key="index"
+              :data="item.userInfo.userId"
+              :style="`background-image: url(${item.userInfo.avatar})`"
           ></li>
         </ul>
-        <div class="checkout" v-if="createGroup.status" :style="`left: ${checkout.clientx}px;top: ${checkout.clienty}px`"></div>
+        <div class="checkout" v-if="createGroup.status" :style="`background-image: url(${createGroup.userInfo.avatar};left: ${checkout.clientx}px;top: ${checkout.clienty}px`"></div>
       </div>
       <div class="bottom">
         <div class="create-group" :class="{show: createGroup.show}">
@@ -24,7 +25,7 @@
             <div class="content" ref="cmove">
               <div class="item-box" :class="{big: createGroup.status}" v-for="(item, index) in groupList">
                 <div class="delete" @click="deleteGroupItem(index)"></div>
-                <div class="item" :style="`background-size: 100% 100%; background: url(${item.url}) no-repeat center center;`"></div>
+                <div class="item" :style="`background-image: url(${item.avatar})`"></div>
               </div>
               <div class="item-box" :class="{big: createGroup.status}" v-show="groupList.length < 6"><div class="item"></div></div>
             </div>
@@ -79,6 +80,10 @@ export default {
     },
     chatBox_top () {
       return this.$store.getters['size/chatBoxRealSize'].top;
+    },
+    onlineUserList () {
+      return this.$store.getters['box/onlineUserList'];
+      // return this.$store.state.box.userList;
     }
   },
   created () {
@@ -87,15 +92,20 @@ export default {
     }
   },
   mounted () {
+    let _this = this;
     this.$refs.ul.onmousedown = (e) => {
+      if (!this.createGroup.show) return;
       let index = e.target.getAttribute('data');
       if (index) {
         this.createGroup = {
-          ...this.createGroup,
+          ..._this.createGroup,
           status: false,
-          state: true,
-          userInfo: this.userList[index]
+          state: true
         };
+        for (let i = 0; i < _this.onlineUserList.length; i++) {
+          if (index - 0 === _this.onlineUserList[i].userInfo.userId - 0) _this.createGroup.userInfo = _this.onlineUserList[i].userInfo;
+        }
+
         let left = this.$refs.cmove.offsetLeft;
         let top = this.$refs.cmove.offsetTop;
         let width = this.$refs.cmove.clientWidth;
@@ -109,6 +119,7 @@ export default {
       }
     };
     this.$refs.box.onmousemove = (e) => {
+      if (!this.createGroup.show) return;
       if (this.createGroup.state) {
         this.createGroup.status = true;
       }
@@ -120,6 +131,7 @@ export default {
       }
     };
     this.$refs.box.onmouseup = (e) => {
+      if (!this.createGroup.show) return;
       if (this.createGroup.status) {
         if (e.clientX > this.cmove.x1 && e.clientX < this.cmove.x2 && e.clientY > this.cmove.y1 && e.clientY < this.cmove.y2) {
           if (this.groupList.length < 6) this.groupList.push(this.createGroup.userInfo);
@@ -192,7 +204,12 @@ export default {
           display: inline-block;
           margin: 10px;
           border-radius: 100%;
+          border: 1px solid #95c7fb;
+          box-sizing: border-box;
           overflow: hidden;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
           &.small {
             transform: scale(0.9);
           }
@@ -203,7 +220,8 @@ export default {
         height: 60px;
         border-radius: 100%;
         overflow: hidden;
-        background: url(../images/user/boy1.png) no-repeat center center;
+        background-position: center;
+        background-repeat: no-repeat;
         background-size: 100% 100%;
         position: fixed;
         opacity: 0.7;
@@ -275,6 +293,9 @@ export default {
                 border-radius: 100%;
                 border: 2px dashed #ccc;
                 box-sizing: border-box;
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
               }
               .delete {
                 width: 100%;

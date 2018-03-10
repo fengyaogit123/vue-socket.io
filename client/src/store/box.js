@@ -10,6 +10,7 @@ export default {
   namespaced: true,
   state: {
     scrollFunc: null, // 滚动条置底方法
+    $message: null,
     userListResize: 200,
     itemIndex: robotId, // -2 ：默认没有选中的情况， -1 ：群组聊天室，   0-9 ：正常
     userInfo: {
@@ -57,7 +58,19 @@ export default {
     loginStatus: false,
     error_tip: ''
   },
+  getters: {
+    onlineUserList (state) {
+      let arr = [];
+      for (let k in state.userList) {
+        if ((k - 0 !== robotId - 0) && (k - 0 !== groupId - 0)) arr.push(state.userList[k]);
+      }
+      return arr;
+    }
+  },
   mutations: {
+    initMessage (state, fn) {
+      state.$message = fn;
+    },
     saveScrollFunc (state, fn) {
       state.scrollFunc = fn;
     },
@@ -168,6 +181,7 @@ export default {
           commit('saveUserInfo', obj.data);
           state.connect = true;
           dispatch('httpServerInit');
+          state.$message({type: 'success', text: '登录成功'});
         } else if (obj.code === 300) {
           commit('error_tip_change', obj.message);
         } else {
@@ -186,13 +200,14 @@ export default {
 
       state.httpServer.on('auto-login', (obj) => { // {userId}
         if (obj.code === 200) {
+          state.$message({type: 'success', text: obj.message});
           commit('saveUserInfo', obj.data);
           dispatch('httpServerInit');
         } else if (obj.code === 300) {
-          console.log('这里采用上方弹出提示条的方式提醒用户出错喽。');
+          state.$message({type: 'error', text: obj.message});
         } else if (obj.code === 301) {
           commit('clearUserInfo');
-          console.log('这里采用上方弹出提示条的方式提醒用户身份信息已过期，重新登录。');
+          state.$message({type: 'warn', text: obj.message});
         } else {
           console.log('这里出错了，请检查下');
         }

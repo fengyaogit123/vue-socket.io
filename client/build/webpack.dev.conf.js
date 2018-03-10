@@ -66,6 +66,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       }
     ])
   ]
+}, {
+  module: {
+    rules: [
+      {
+        test: /index.js$/,
+        loader: 'webpack-replace-loader',
+        options: {
+          replace: 'http://127.0.0.1:3003',
+          search: '$IP$',
+          attr: 'g'
+        }
+      }
+    ]
+  }
 })
 
 module.exports = new Promise((resolve, reject) => {
