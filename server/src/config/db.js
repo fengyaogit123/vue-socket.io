@@ -1,8 +1,8 @@
 
 import mongoose from 'mongoose';
 
-function dbconnect () {
-  mongoose.connect('mongodb://lixin:123123@127.0.0.1:27017/tourism', {useMongoClient: true});
+function dbconnect () { // lixin:123123@
+  mongoose.connect('mongodb://127.0.0.1:27017/tourism', {useMongoClient: true});
   var db = mongoose.connection;
   db.on('error', () => {
     console.log('数据库连接出错。');

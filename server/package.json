@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon src --exec babel-node",
     "build": "babel src -d dist --source-maps",
+    "server": "node dist/index.js",
     "debug": "nodemon src --inspect --exec babel-node"
   },
   "dependencies": {

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/config/index.js"],"names":["project_port","chat_room_port","robot_id","group_id"],"mappings":";;;;;kBAAe;AACbA,gBAAc,IADD;AAEbC,kBAAgB,IAFH;AAGbC,YAAU,EAHG;AAIbC,YAAU;AAJG,C","file":"index.js","sourcesContent":["export default {\r\n  project_port: 3001,\r\n  chat_room_port: 3003,\r\n  robot_id: 10,\r\n  group_id: 20\r\n};\r\n"]}
