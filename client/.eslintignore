@@ -3,3 +3,4 @@
 /dist/
 /*.js
 /src/lib/md5.js
+/src/lib/
