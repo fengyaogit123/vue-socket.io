@@ -5,18 +5,9 @@ import App from './App';
 import router from './router/index.js';
 import store from './store/index.js';
 
-import check from './lib/check.js';
-
 Vue.config.productionTip = false;
-let status = check({
-  'Safari': 7,
-  'Chrome': 65,
-  'IE': 10,
-  'Edge': 12,
-  'Firefox': 50
-});
-console.log(status);
-if (status) {
+
+export default () => {
   /* eslint-disable no-new */
   new Vue({
     el: '#app',
@@ -25,4 +16,4 @@ if (status) {
     template: '<App/>',
     components: { App }
   });
-}
+};
