@@ -13,4 +13,4 @@ if (status) {
     var app = require('./main.js');
     // console.log(app)
     app.default();
-}
+} else {}
