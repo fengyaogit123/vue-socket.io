@@ -36,9 +36,12 @@
 [备用地址](https://beautifulboys.github.io/pc/vue-socket/index.html#/)
 
 ## 其他说明
-本项目共用另一个个人项目：[【旅游圈】](https://github.com/beautifulBoys/tourism-circle) 的账号体系。如没有账号，请先去注册,旅游圈账号体系为首次登录自动创建账号。
+本项目共用另一个个人项目：[【旅游圈】](https://github.com/beautifulBoys/tourism-circle) 的账号体系。如没有账号，请先去注册，旅游圈账号体系为首次登录自动创建账号。
+
 或者使用以下账号查看
+
 账号：体验账号  密码：123456 
+
 账号：李鑫      密码：123123
 
 ## 项目图片预览
