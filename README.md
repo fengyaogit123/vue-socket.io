@@ -21,14 +21,18 @@
 
 ## 技术栈
 前端：vue: 2.5 + vuex: 3.0 + vue-router + socket.io-client: 2.0
+
 服务端：node：8.0 + express: 4.1 + mongoose: 4.1 + nodemon: 1.1 + socket.io: 2.0
 
 ## 项目在线预览
 1.0 版本
+
 [请移步查看](https://github.com/beautifulBoys/vue-socket.io/tree/old-code-example)
 
 2.0 版本
+
 点击访问：http://47.95.212.47:8888/pc/vue-socket/index.html#/
+
 备用地址：
 
 ## 其他说明
