@@ -1,5 +1,5 @@
 
-# AIM 即时通讯
+# socket.io app
 
 > 这是一个完整的即时通讯 APP web 版本。vue-socket.io master分支为 2.0 版本，原来的 1.0 版本请查看分支： old-code-example。
 >包括一个web应用，以及一个服务端。前端部分用用socket.io-client 和 vue.js 完成，代码简单易懂。前端显示部分为高仿 腾讯TIM。服务端用 Node.js 和 socket.io-server 完成。
@@ -36,12 +36,9 @@
 [备用地址](https://beautifulboys.github.io/pc/vue-socket/index.html#/)
 
 ## 其他说明
-本项目共用另一个个人项目：[【旅游圈】](https://github.com/beautifulBoys/tourism-circle) 的账号体系。如没有账号，请先去注册，旅游圈账号体系为首次登录自动创建账号。
-
+本项目共用另一个个人项目：[【旅游圈】](https://github.com/beautifulBoys/tourism-circle) 的账号体系。如没有账号，请先去注册,旅游圈账号体系为首次登录自动创建账号。
 或者使用以下账号查看
-
 账号：体验账号  密码：123456 
-
 账号：李鑫      密码：123123
 
 ## 项目图片预览
@@ -52,6 +49,26 @@
 <img src="https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/source/images/4.png"/>
 <img src="https://raw.githubusercontent.com/beautifulBoys/vue-socket.io/master/source/images/5.png"/>
 
+## 功能实现概况
+- [x] 账号登录 --- 完成
+- [x] 一对一聊天 --- 完成
+- [x] 群组聊天 --- 完成
+- [x] 机器人聊天 --- 完成
+- [x] 窗口随意拖动 --- 完成
+- [x] 窗体大小拖拉 --- 未全部完成
+- [x] 聊天表情 --- 未完成
+- [x] 聊天配置 --- 未完成
+- [x] 屏幕抖动 --- 未完成
+- [x] 发送地理位置 --- 未完成
+- [x] 发送图片 --- 未完成
+- [x] 窗口的最大化、最小化 --- 未完成
+- [x] 窗口的关闭 --- 未完成
+- [x] 右键菜单功能 --- 未完成
+- [x] 新建群组功能 --- 未完成
+- [x] 自动回收废弃群组 --- 未完成
+- [x] 群组信息留存数据库 --- 未完成
+- [x] 添加好友 --- 未完成
+- [x] 账号功能设置 --- 未完成
 
 ## 项目安装及运行
 
