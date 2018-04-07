@@ -1,5 +1,5 @@
 
-# socket.io app
+# AIM 即时通讯
 
 > 这是一个完整的即时通讯 APP web 版本。vue-socket.io master分支为 2.0 版本，原来的 1.0 版本请查看分支： old-code-example。
 >包括一个web应用，以及一个服务端。前端部分用用socket.io-client 和 vue.js 完成，代码简单易懂。前端显示部分为高仿 腾讯TIM。服务端用 Node.js 和 socket.io-server 完成。
@@ -31,14 +31,13 @@
 
 2.0 版本
 
-点击访问：http://47.95.212.47:8888/pc/vue-socket/index.html#/
+[点击访问](http://47.95.212.47:8888/pc/vue-socket/index.html#/)
 
-备用地址：
+[备用地址](https://beautifulboys.github.io/pc/vue-socket/index.html#/)
 
 ## 其他说明
-本项目共用另一个个人项目：[【旅游圈】](https://github.com/beautifulBoys/tourism-circle) 的账号体系。如没有账号，请先去注册。
-旅游圈账号体系为首次登录自动创建账号。
-或者使用体验账号查看
+本项目共用另一个个人项目：[【旅游圈】](https://github.com/beautifulBoys/tourism-circle) 的账号体系。如没有账号，请先去注册,旅游圈账号体系为首次登录自动创建账号。
+或者使用以下账号查看
 账号：体验账号  密码：123456 
 账号：李鑫      密码：123123
 
