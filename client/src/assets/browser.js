@@ -4,22 +4,31 @@
  */
 
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD
-        define(factory)
+    if (typeof define === 'function' && (define.amd||define.cmd)) {
+        // AMD&CMD
+        define(factory);
     } else if (typeof exports === 'object') {
         // Node, CommonJS-like
-        module.exports = factory()
+        module.exports = factory();
     } else {
         // Browser globals (root is window)
-        root.Browser = factory()
+        root.Browser = factory();
     }
 }(this, function () {
-    var _window = window||{};
-    var _navigator = navigator||{};
+    var _window = this||{};
+    var _navigator = typeof navigator!='undefined'?navigator:{};
+    var _mime = function (option, value) {
+        var mimeTypes = navigator.mimeTypes;
+        for (var mt in mimeTypes) {
+            if (mimeTypes[mt][option] == value) {
+                return true;
+            }
+        }
+        return false;
+    };
 
     return function (userAgent) {
-        var u = userAgent || _navigator.userAgent;
+        var u = userAgent || _navigator.userAgent||{};
         var _this = this;
 
         var match = {
@@ -90,19 +99,23 @@
             'Mobile': u.indexOf('Mobi') > -1 || u.indexOf('iPh') > -1 || u.indexOf('480') > -1,
             'Tablet': u.indexOf('Tablet') > -1 || u.indexOf('Pad') > -1 || u.indexOf('Nexus 7') > -1
         };
+        var is360 = false;
+        if(_window.chrome){
+            is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
+            if(_window.showModalDialog){
+                var chrome_vision = u.replace(/^.*Chrome\/([\d]+).*$/, '$1');
+                if(chrome_vision>36){
+                    is360 = true;
+                }
+            }
+        }
         //修正
         if (match['Mobile']) {
             match['Mobile'] = !(u.indexOf('iPad') > -1);
-        } else if (_window.showModalDialog && _window.chrome) {
-            for(var i=0;i<navigator.mimeTypes.length;i++){
-                var item = navigator.mimeTypes[i];
-                if(item['type']=='application/gameplugin'){
-                    match['360SE'] = true;
-                    break;
-                }
-            }
-            var chrome_vision = u.replace(/^.*Chrome\/([\d]+).*$/, '$1');
-            if(!match['360SE']&&chrome_vision>36){
+        } else if (is360) {
+            if(_mime("type", "application/gameplugin")){
+                match['360SE'] = true;
+            }else{
                 match['360EE'] = true;
             }
         }
@@ -181,7 +194,7 @@
             'WebOS': function () {
                 return u.replace(/^.*hpwOS\/([\d.]+);.*$/, '$1');
             }
-        }
+        };
         _this.osVersion = '';
         if (osVersion[_this.os]) {
             _this.osVersion = osVersion[_this.os]();
