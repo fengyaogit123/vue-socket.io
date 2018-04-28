@@ -38,7 +38,7 @@
 ## 其他说明
 本项目共用另一个个人项目：[【旅游圈】](https://github.com/beautifulBoys/tourism-circle) 的账号体系。如没有账号，请先去注册,旅游圈账号体系为首次登录自动创建账号。
 或者使用以下账号查看
-账号：体验账号  密码：123456 
+账号：体验账号  密码：123456
 账号：李鑫      密码：123123
 
 ## 项目图片预览
@@ -74,16 +74,19 @@
 
 ``` bash
 # 项目安装
-npm install
+client：client目录下：npm install
+server：server目录下：npm install
 
-# 打开server目录，命令行启动server.js(服务器)
-node src/index.js
+# 项目运行
+client：client目录下：npm run dev & npm run start & npm start
+server：server目录下：npm start
 
-# 项目运行（浏览器访问 http://localhost:8085）
-npm run dev
+# 项目查看：
+浏览器：http://localhost:8080/#/
 
-# 编译打包
-npm run build
+# 服务端说明
+ 因为这是一个完整的项目，所以需要连接数据库。本项目采用 mongoDb 数据库（非关系型数据库）。
+ mongoDb 官网：https://www.mongodb.com/
 ```
 
-
+## 如果项目中碰到其他问题不能解决，欢迎向我发邮件（1298947916@qq.com）或者 issues 提问。
