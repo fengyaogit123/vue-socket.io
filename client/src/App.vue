@@ -18,7 +18,7 @@ export default {
     return {
       message: {
         type: 'error',
-        text: '谁点了福建省的来访接sgdsgdfgfdgsdfgdfgdfgsdfgsf待室'
+        text: '测试测试'
       }
     };
   },
