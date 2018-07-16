@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 db(); // 连接数据库
 chat_room(); // 通讯录聊天功能启动
 
+// 路径检查
 app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
